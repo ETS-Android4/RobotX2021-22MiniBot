@@ -17,8 +17,8 @@ LiftSystem extends XModule {
 
     double power = 1;
 
-    boolean closed2 = true;
-    boolean closed = true;
+    boolean closed2 = false;
+    boolean closed = false;
 
     public LiftSystem (OpMode op) {
         super(op);
@@ -28,6 +28,8 @@ LiftSystem extends XModule {
 
         liftMotor = opMode.hardwareMap.dcMotor.get("LiftMotor");
         liftMotor2 = opMode.hardwareMap.dcMotor.get("LiftMotor2");
+        armServo = opMode.hardwareMap.servo.get("ArmServo");
+        pushServo = opMode.hardwareMap.servo.get("PushServo");
 
     }
 
@@ -43,10 +45,10 @@ LiftSystem extends XModule {
     public void pushServo() {
         if (!closed2) {
             pushServo.setPosition(0.89);
-            closed = true;
+            closed2 = true;
         } else {
             pushServo.setPosition(0.41);
-            closed = false;
+            closed2 = false;
         }
     }
 
@@ -79,7 +81,7 @@ LiftSystem extends XModule {
         if (xGamepad2().right_stick_button.wasPressed()){
             armServo();
         }
-        if (xGamepad2().right_stick_button.wasPressed()){
+        if (xGamepad2().left_stick_button.wasPressed()){
             pushServo();
         }
 
