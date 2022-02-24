@@ -166,16 +166,92 @@
                 }
             }
 
+            int TestTime = 100;
+
             if (x==1){
 
+                /*
+                Code is w/o encoder for drive train - hopefully will use
+                Basic movements set up
+                Back up to wall after duckspin to square off
+                 */
+
+                DriveForward(0.5,TestTime);
+                StrafeRight(0.5,TestTime);
+                DriveBackward(0.5,TestTime);
+
+                DuckSpin(0.5,TestTime);
+
+                StrafeLeft(0.5,TestTime);
+                DriveBackward(0.5,TestTime);
+                DriveForward(0.5,TestTime);
+                StrafeLeft(0.5,TestTime);
+                DriveForward(0.5,TestTime);
+
+                // encoder lift code:
+
+                //
+                DriveBackward(0.5,TestTime);
+                TurnLeft(0.5,TestTime);
+                DriveForward(0.5,TestTime);
 
                 sleep(1000000);
 
             }
             if (x==2){
+                /*
+                Code is w/o encoder for drive train - hopefully will use
+                Basic movements set up
+                Back up to wall after duckspin to square off
+                 */
+
+                DriveForward(0.5,TestTime);
+                StrafeRight(0.5,TestTime);
+                DriveBackward(0.5,TestTime);
+
+                DuckSpin(0.5,TestTime);
+
+                StrafeLeft(0.5,TestTime);
+                DriveBackward(0.5,TestTime);
+                DriveForward(0.5,TestTime);
+                StrafeLeft(0.5,TestTime);
+                DriveForward(0.5,TestTime);
+
+                // encoder lift code:
+
+                //
+                DriveBackward(0.5,TestTime);
+                TurnLeft(0.5,TestTime);
+                DriveForward(0.5,TestTime);
+
                 sleep(1000000);
             }
             if (x==3){
+               /*
+                Code is w/o encoder for drive train - hopefully will use
+                Basic movements set up
+                Back up to wall after duckspin to square off
+                 */
+
+                DriveForward(0.5,TestTime);
+                StrafeRight(0.5,TestTime);
+                DriveBackward(0.5,TestTime);
+
+                DuckSpin(0.5,TestTime);
+
+                StrafeLeft(0.5,TestTime);
+                DriveBackward(0.5,TestTime);
+                DriveForward(0.5,TestTime);
+                StrafeLeft(0.5,TestTime);
+                DriveForward(0.5,TestTime);
+
+                // encoder lift code:
+
+                //
+                DriveBackward(0.5,TestTime);
+                TurnLeft(0.5,TestTime);
+                DriveForward(0.5,TestTime);
+
                 sleep(1000000);
             }
 
