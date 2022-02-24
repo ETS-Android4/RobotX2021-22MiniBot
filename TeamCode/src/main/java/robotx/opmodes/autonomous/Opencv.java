@@ -91,11 +91,15 @@
         mecanumDrive.backLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         mecanumDrive.backRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
+        liftSystem.liftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        liftSystem.liftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
         double placementVar = 0;
         int x = 0;
+        int SleepTime = 1500;
 
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
-        phoneCam = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "Webcam"), cameraMonitorViewId);
+        phoneCam = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "Webcam1"), cameraMonitorViewId);
         pipeline = new SkystoneDeterminationPipeline();
         phoneCam.setPipeline(pipeline);
 
@@ -127,32 +131,52 @@
             sleep(50);
 
             // initial drive forward
+            DriveForward(0.5,600);
+            sleep(SleepTime);
 
-            // value for duck between 100 and 110
+            // code for three movements
 
-
-            // code for three movements, initial avg1 value put in is incorrect - setup for red side right
-
-            if (pipeline.avg1 >= 95 && pipeline.avg1 <= 115) {
+            if (pipeline.avg1 >= 130) {
                 DriveForward(1,100);
+                sleep(SleepTime);
                 x=1;
 
                 // rest of first movement
-
+                StrafeRight(0.5,600);
+                sleep(SleepTime);
 
             }else {
+                StrafeRight(0.5,200);
+                sleep(SleepTime);
 
-                if (x == 0){
-                    StrafeLeft(1,100);
+                if (pipeline.avg1 >= 131){
+
+                    x=2;
+                    StrafeRight(0.5,400);
+                    sleep(SleepTime);
                     // rest of second movement
 
                 }
                 else {
-
+                    x=3;
                     // movement for rest of third
-                    StrafeRight(1,100);
+                    StrafeRight(0.5,400);
+                    sleep(SleepTime);
 
                 }
+            }
+
+            if (x==1){
+
+
+                sleep(1000000);
+
+            }
+            if (x==2){
+                sleep(1000000);
+            }
+            if (x==3){
+                sleep(1000000);
             }
 
 
