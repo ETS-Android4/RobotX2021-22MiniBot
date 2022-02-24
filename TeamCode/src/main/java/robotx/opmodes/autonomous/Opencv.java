@@ -444,6 +444,38 @@
                 sleep(time);
                 liftSystem.liftMotor.setPower(0);
             }
+            public void DiagonalDriveUpRight(double power, int time){
+                mecanumDrive.frontLeft.setPower(-power);
+                mecanumDrive.backRight.setPower(power);
+                sleep(time);
+                mecanumDrive.frontLeft.setPower(0);
+                mecanumDrive.backRight.setPower(0);
+
+            }
+            public void DiagonalDriveUpLeft(double power, int time){
+                mecanumDrive.frontRight.setPower(power);
+                mecanumDrive.backLeft.setPower(power);
+                sleep(time);
+                mecanumDrive.frontRight.setPower(0);
+                mecanumDrive.backLeft.setPower(0);
+
+            }
+            public void DiagonalDriveBackRight(double power, int time){
+                mecanumDrive.frontLeft.setPower(power);
+                mecanumDrive.backRight.setPower(-power);
+                sleep(time);
+                mecanumDrive.frontLeft.setPower(0);
+                mecanumDrive.backRight.setPower(0);
+
+            }
+            public void DiagonalDriveBackLeft(double power, int time){
+                mecanumDrive.frontRight.setPower(-power);
+                mecanumDrive.backLeft.setPower(-power);
+                sleep(time);
+                mecanumDrive.frontRight.setPower(0);
+                mecanumDrive.backLeft.setPower(0);
+
+            }
 
 
         }
