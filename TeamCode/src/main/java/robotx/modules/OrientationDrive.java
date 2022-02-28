@@ -40,14 +40,14 @@ public class OrientationDrive extends XModule {
     public boolean slowMode = false;
     public boolean superSlowMode = false;
 
-    double flPow = ((yPrime-xPrime-r)*(-s));
-    double frPow = ((yPrime+xPrime+r)*(-s));
-    double brPow = ((yPrime-xPrime+r)*(-s));
-    double blPow = ((yPrime+xPrime-r)*(-s));
+    double flPow = ((yPrime-xPrime+r)*(-s));
+    double frPow = ((yPrime+xPrime-r)*(-s));
+    double brPow = ((yPrime-xPrime-r)*(-s));
+    double blPow = ((yPrime+xPrime+r)*(-s));
 
     public void init(){
         frontLeft = opMode.hardwareMap.dcMotor.get("frontLeft");
-        frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
+        //frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
         frontRight = opMode.hardwareMap.dcMotor.get("frontRight");
         frontRight.setDirection(DcMotorSimple.Direction.REVERSE);
         backRight = opMode.hardwareMap.dcMotor.get("backRight");

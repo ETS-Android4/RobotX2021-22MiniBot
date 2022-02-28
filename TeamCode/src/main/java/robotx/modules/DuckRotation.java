@@ -15,7 +15,7 @@ public class DuckRotation extends XModule {
     public Servo duckServo;
 
     boolean blocked = false;
-    double power = .6;
+    double power = .5;
 
 
     public void blockServo() {

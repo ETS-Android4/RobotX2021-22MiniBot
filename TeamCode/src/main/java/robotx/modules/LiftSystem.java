@@ -17,8 +17,8 @@ LiftSystem extends XModule {
 
     double power = 1;
 
-    boolean closed2 = false;
-    boolean closed = false;
+    boolean closed2 = true;
+    boolean closed = true;
 
     public LiftSystem (OpMode op) {
         super(op);
@@ -35,7 +35,7 @@ LiftSystem extends XModule {
 
     public void armServo() {
         if (!closed) {
-            armServo.setPosition(0.1);
+            armServo.setPosition(0.2);
             closed = true;
         } else {
             armServo.setPosition(0.55);
@@ -67,11 +67,11 @@ LiftSystem extends XModule {
         }
 
         if (xGamepad2().a.isDown()){
-            liftMotor2.setPower(power);
+            liftMotor2.setPower(-power);
         }
 
         else if (xGamepad2().b.isDown()) {
-            liftMotor2.setPower(-power);
+            liftMotor2.setPower(power);
         }
 
         else {
