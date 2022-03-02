@@ -59,6 +59,13 @@ public class BlueSideDuckRight extends LinearOpMode {
         mecanumDrive.backLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         mecanumDrive.backRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
+        liftSystem.liftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        liftSystem.liftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        mecanumDrive.frontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        mecanumDrive.frontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        mecanumDrive.backRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        mecanumDrive.backLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
         telemetry.addData(">", "Press Play to Start Op Mode");
         telemetry.update();
 

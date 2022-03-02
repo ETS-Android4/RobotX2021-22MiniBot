@@ -1,5 +1,5 @@
 
-        package robotx.opmodes.autonomous;
+package robotx.opmodes.autonomous;
         /*
          * Copyright (c) 2020 OpenFTC Team
          *
@@ -21,7 +21,7 @@
          * SOFTWARE.
          */
 
-        import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
@@ -44,8 +44,13 @@ import robotx.modules.EncoderTester;
 import robotx.modules.MecanumDrive;
 import robotx.modules.OrientationDrive;
 
-        @Autonomous (name = "OpenCv\uD83D\uDE24")
-        public class Opencv extends LinearOpMode {
+/*
+The goal
+ */
+
+@Autonomous (name = "OpenCv\uD83D\uDE24")
+
+public class Opencv extends LinearOpMode {
 
     OpenCvWebcam phoneCam;
     SkystoneDeterminationPipeline pipeline;
@@ -58,11 +63,10 @@ import robotx.modules.OrientationDrive;
     @Override
     public void runOpMode() {
 
-
-
         telemetry.addData("Status", "Initialized");
         telemetry.update();
 
+        // Importing Modules
 
         duckRotation = new DuckRotation(this);
         duckRotation.init();
@@ -84,8 +88,6 @@ import robotx.modules.OrientationDrive;
         intakeSystem.start();
         orientationDrive.start();
 
-
-
         mecanumDrive.frontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         mecanumDrive.frontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         mecanumDrive.backLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -93,11 +95,18 @@ import robotx.modules.OrientationDrive;
 
         liftSystem.liftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         liftSystem.liftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        mecanumDrive.frontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        mecanumDrive.frontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        mecanumDrive.backRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        mecanumDrive.backLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
-        double placementVar = 0;
+        //Var X is used to determine placement of the block
         int x = 0;
+
+        //Experimental SleepTime Variable for testing sleeps
         int SleepTime = 1500;
 
+        //Camera setup
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         phoneCam = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "Webcam1"), cameraMonitorViewId);
         pipeline = new SkystoneDeterminationPipeline();
@@ -123,11 +132,11 @@ import robotx.modules.OrientationDrive;
         waitForStart();
 
         while (opModeIsActive()) {
-            // Don't burn CPU cycles busy-looping in this sample
 
             telemetry.addData("Analysis", pipeline.getAnalysis());
             telemetry.update();
 
+            // Don't burn CPU cycles busy-looping in this sample - Sleep is used for testing purposes, simply left in to leave a slight delay at the start.
             sleep(50);
 
             // initial drive forward
@@ -135,6 +144,7 @@ import robotx.modules.OrientationDrive;
             sleep(SleepTime);
 
             // code for three movements
+            // all end up in the same place
 
             if (pipeline.avg1 >= 130) {
                 DriveForward(1,100);
@@ -166,6 +176,7 @@ import robotx.modules.OrientationDrive;
                 }
             }
 
+            //Experimental variable used as a placeholder for tested movements
             int TestTime = 100;
 
             if (x==1){
@@ -189,9 +200,15 @@ import robotx.modules.OrientationDrive;
                 DriveForward(0.5,TestTime);
 
                 // encoder lift code:
+                LiftFirstLevel();
+                sleep(SleepTime);
 
-                //
                 DriveBackward(0.5,TestTime);
+
+                LowerFirstLevel();
+                sleep(SleepTime);
+
+                // Drive to Warehouse
                 TurnLeft(0.5,TestTime);
                 DriveForward(0.5,TestTime);
 
@@ -218,9 +235,15 @@ import robotx.modules.OrientationDrive;
                 DriveForward(0.5,TestTime);
 
                 // encoder lift code:
+                LiftSecondLevel();
+                sleep(SleepTime);
 
-                //
                 DriveBackward(0.5,TestTime);
+
+                LowerSecondLevel();
+                sleep(SleepTime);
+
+                // Drive to Warehouse
                 TurnLeft(0.5,TestTime);
                 DriveForward(0.5,TestTime);
 
@@ -246,9 +269,15 @@ import robotx.modules.OrientationDrive;
                 DriveForward(0.5,TestTime);
 
                 // encoder lift code:
+                LiftThirdLevel();
+                sleep(SleepTime);
 
-                //
                 DriveBackward(0.5,TestTime);
+
+                LowerThirdLevel();
+                sleep(SleepTime);
+
+                // Drive to Warehouse
                 TurnLeft(0.5,TestTime);
                 DriveForward(0.5,TestTime);
 
@@ -341,9 +370,6 @@ import robotx.modules.OrientationDrive;
                     region1_pointB, // Second point which defines the rectangle
                     GREEN, // The color the rectangle is drawn in
                     -1); // Negative thickness means solid fill
-
-
-
 
             return input;
         }
