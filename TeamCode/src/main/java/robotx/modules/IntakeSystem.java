@@ -27,7 +27,7 @@
 
  
      public void loop() {
-         if (xGamepad2().x.isDown()) {
+         if (xGamepad2().x.wasPressed()) {
              intakeMotor.setPower(power);
          }
  

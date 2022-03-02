@@ -69,6 +69,18 @@ public class BlueSideDuckLeft extends LinearOpMode {
         if (opModeIsActive()) {
             //Movement
 
+            DriveForward(0.5,500);
+
+
+            sleep(sleeptime);
+            sleep(sleeptime);
+            sleep(sleeptime);
+            sleep(sleeptime);
+            sleep(sleeptime);
+            sleep(sleeptime);
+            sleep(sleeptime);
+
+
             LiftSystem();
             sleep(sleeptime);
 

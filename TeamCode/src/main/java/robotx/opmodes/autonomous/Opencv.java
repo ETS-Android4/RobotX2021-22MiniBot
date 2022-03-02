@@ -476,6 +476,190 @@ import robotx.modules.OrientationDrive;
                 mecanumDrive.backLeft.setPower(0);
 
             }
+            public void LiftSystem(){
+
+                liftSystem.liftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+                liftSystem.liftMotor2.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+                liftSystem.liftMotor.setPower(0);
+                liftSystem.liftMotor2.setPower(0);
+            }
+
+            //One full revolution is 300 ticks
+
+            public void LiftFirstLevel(){
+
+                liftSystem.liftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+                liftSystem.liftMotor2.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+                liftSystem.liftMotor.setTargetPosition(300);
+                liftSystem.liftMotor2.setTargetPosition(300);
+
+                liftSystem.liftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                liftSystem.liftMotor2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+                liftSystem.liftMotor.setPower(0.7);
+                liftSystem.liftMotor2.setPower(0.7);
+
+                while (liftSystem.liftMotor.isBusy() && liftSystem.liftMotor2.isBusy() )
+                {
+
+                }
+
+                sleep(10);
+                liftSystem.liftMotor.setPower(0);
+                liftSystem.liftMotor2.setPower(0);
+                sleep(10);
+
+                liftSystem.liftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+                liftSystem.liftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+            }
+
+            public void LiftSecondLevel(){
+
+                liftSystem.liftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+                liftSystem.liftMotor2.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+                liftSystem.liftMotor.setTargetPosition(800);
+                liftSystem.liftMotor2.setTargetPosition(800);
+
+                liftSystem.liftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                liftSystem.liftMotor2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+                liftSystem.liftMotor.setPower(0.7);
+                liftSystem.liftMotor2.setPower(0.7);
+
+                while (liftSystem.liftMotor.isBusy() && liftSystem.liftMotor2.isBusy() )
+                {
+
+                }
+
+                sleep(10);
+                liftSystem.liftMotor.setPower(0);
+                liftSystem.liftMotor2.setPower(0);
+                sleep(10);
+
+                liftSystem.liftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+                liftSystem.liftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+            }
+
+            public void LiftThirdLevel(){
+
+                liftSystem.liftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+                liftSystem.liftMotor2.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+                liftSystem.liftMotor.setTargetPosition(1900);
+                liftSystem.liftMotor2.setTargetPosition(1900);
+
+                liftSystem.liftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                liftSystem.liftMotor2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+                liftSystem.liftMotor.setPower(0.7);
+                liftSystem.liftMotor2.setPower(0.7);
+
+                while (liftSystem.liftMotor.isBusy() && liftSystem.liftMotor2.isBusy() )
+                {
+
+                }
+
+                sleep(10);
+                liftSystem.liftMotor.setPower(0);
+                liftSystem.liftMotor2.setPower(0);
+                sleep(10);
+
+                liftSystem.liftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+                liftSystem.liftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+            }
+
+            public void LowerFirstLevel(){
+
+                liftSystem.liftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+                liftSystem.liftMotor2.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+                liftSystem.liftMotor.setTargetPosition(-300);
+                liftSystem.liftMotor2.setTargetPosition(-300);
+
+                liftSystem.liftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                liftSystem.liftMotor2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+                liftSystem.liftMotor.setPower(-0.7);
+                liftSystem.liftMotor2.setPower(-0.7);
+
+                while (liftSystem.liftMotor.isBusy() && liftSystem.liftMotor2.isBusy() )
+                {
+
+                }
+
+                sleep(10);
+                liftSystem.liftMotor.setPower(0);
+                liftSystem.liftMotor2.setPower(0);
+                sleep(10);
+
+                liftSystem.liftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+                liftSystem.liftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+            }
+
+            public void LowerSecondLevel(){
+
+                liftSystem.liftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+                liftSystem.liftMotor2.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+                liftSystem.liftMotor.setTargetPosition(-800);
+                liftSystem.liftMotor2.setTargetPosition(-800);
+
+                liftSystem.liftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                liftSystem.liftMotor2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+                liftSystem.liftMotor.setPower(-0.7);
+                liftSystem.liftMotor2.setPower(-0.7);
+
+                while (liftSystem.liftMotor.isBusy() && liftSystem.liftMotor2.isBusy() )
+                {
+
+                }
+
+                sleep(10);
+                liftSystem.liftMotor.setPower(0);
+                liftSystem.liftMotor2.setPower(0);
+                sleep(10);
+
+                liftSystem.liftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+                liftSystem.liftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+            }
+
+            public void LowerThirdLevel(){
+
+                liftSystem.liftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+                liftSystem.liftMotor2.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+                liftSystem.liftMotor.setTargetPosition(-1900);
+                liftSystem.liftMotor2.setTargetPosition(-1900);
+
+                liftSystem.liftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                liftSystem.liftMotor2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+                liftSystem.liftMotor.setPower(-0.7);
+                liftSystem.liftMotor2.setPower(-0.7);
+
+                while (liftSystem.liftMotor.isBusy() && liftSystem.liftMotor2.isBusy() )
+                {
+
+                }
+
+                sleep(10);
+                liftSystem.liftMotor.setPower(0);
+                liftSystem.liftMotor2.setPower(0);
+                sleep(10);
+
+                liftSystem.liftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+                liftSystem.liftMotor2.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+            }
 
 
 

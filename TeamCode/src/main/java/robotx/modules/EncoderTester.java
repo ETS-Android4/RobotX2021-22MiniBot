@@ -1,6 +1,5 @@
 package robotx.modules;
 
-import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -8,7 +7,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import robotx.libraries.XModule;
 
 
-@Autonomous(name = "EncoderLift")
+
 @Disabled
 
 public class EncoderTester extends XModule {
@@ -21,10 +20,10 @@ public class EncoderTester extends XModule {
     }
 
     //@Override
-    public void runOpMode() throws InterruptedException
+    public void init()
     {
-        liftMotor = opMode.hardwareMap.dcMotor.get("liftMotor");
-        liftMotor2 = opMode.hardwareMap.dcMotor.get("liftMotor2");
+        liftMotor = opMode.hardwareMap.dcMotor.get("LiftMotor");
+        liftMotor2 = opMode.hardwareMap.dcMotor.get("LiftMotor2");
 
     }
 
@@ -202,16 +201,17 @@ public class EncoderTester extends XModule {
         liftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
     }
-/*
+
     public void loop() {
         if (xGamepad2().a.wasPressed()){
             LiftThirdLevel();
         }
-
-
+        if (xGamepad2().b.wasPressed()){
+            LowerThirdLevel();
+        }
 
     }
-*/
+
     }
 
 

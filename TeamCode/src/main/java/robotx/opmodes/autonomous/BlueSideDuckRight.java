@@ -65,20 +65,20 @@ public class BlueSideDuckRight extends LinearOpMode {
         waitForStart();
         //runtime.reset();
 
-        int SleepTime = 5000;
+        int SleepTime = 10000;
 
         if (opModeIsActive()) {
             //Movement
-            DriveBackwardDistance(0.7,10);
+            DriveForwardDistance(0.1,2000);
             sleep(SleepTime);
 
-            DriveBackwardDistance(0.7,300);
+            DriveBackwardDistance(0.5,300);
             sleep(SleepTime);
 
-            StrafeLeftDistance(0.7,300);
+            StrafeLeftDistance(0.5,300);
             sleep(SleepTime);
 
-            StrafeRightDistance(0.7,300);
+            StrafeRightDistance(0.5,300);
             sleep(SleepTime);
 
 
@@ -174,9 +174,9 @@ public class BlueSideDuckRight extends LinearOpMode {
         sleep(time);
         liftSystem.liftMotor.setPower(0);
     }
-    public void DriveForwardDistance(double power, int distance){
+    public void DriveForwardDistance(double power, int EncoderTicks){
 
-        int EncoderTicks = (distance * 12);
+        //int EncoderTicks = (distance * 12);
 
 
         mecanumDrive.frontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -189,17 +189,19 @@ public class BlueSideDuckRight extends LinearOpMode {
         mecanumDrive.backLeft.setTargetPosition(EncoderTicks);
         mecanumDrive.backRight.setTargetPosition(EncoderTicks);
 
+        // Set drive power
+        mecanumDrive.frontRight.setPower(-power);
+        mecanumDrive.frontLeft.setPower(power);
+        mecanumDrive.backRight.setPower(power);
+        mecanumDrive.backLeft.setPower(power);
+
         // Set to RUN_TO_POSITION_MODE
         mecanumDrive.frontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         mecanumDrive.frontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         mecanumDrive.backRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         mecanumDrive.backLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-        // Set drive power
-        mecanumDrive.frontRight.setPower(power);
-        mecanumDrive.frontLeft.setPower(power);
-        mecanumDrive.backRight.setPower(power);
-        mecanumDrive.backLeft.setPower(power);
+
 
 
         while (mecanumDrive.frontLeft.isBusy() && mecanumDrive.frontRight.isBusy() && mecanumDrive.backLeft.isBusy() && mecanumDrive.backRight.isBusy() )
@@ -242,9 +244,9 @@ public class BlueSideDuckRight extends LinearOpMode {
 
         // Set drive power
         mecanumDrive.frontRight.setPower(power);
-        mecanumDrive.frontLeft.setPower(power);
-        mecanumDrive.backRight.setPower(power);
-        mecanumDrive.backLeft.setPower(power);
+        mecanumDrive.frontLeft.setPower(-power);
+        mecanumDrive.backRight.setPower(-power);
+        mecanumDrive.backLeft.setPower(-power);
 
         while (mecanumDrive.frontLeft.isBusy() && mecanumDrive.frontRight.isBusy() && mecanumDrive.backLeft.isBusy() && mecanumDrive.backRight.isBusy() )
         {
@@ -272,9 +274,9 @@ public class BlueSideDuckRight extends LinearOpMode {
 
         // Set target position
         mecanumDrive.frontLeft.setTargetPosition(distance);
-        mecanumDrive.frontRight.setTargetPosition(-distance);
-        mecanumDrive.backLeft.setTargetPosition(-distance);
-        mecanumDrive.backRight.setTargetPosition(distance);
+        mecanumDrive.frontRight.setTargetPosition(distance);
+        mecanumDrive.backLeft.setTargetPosition(distance);
+        mecanumDrive.backRight.setTargetPosition(-distance);
 
         // Set to RUN_TO_POSITION_MODE
         mecanumDrive.frontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -325,10 +327,10 @@ public class BlueSideDuckRight extends LinearOpMode {
         mecanumDrive.backLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
         // Set drive power
-        mecanumDrive.frontRight.setPower(power);
+        mecanumDrive.frontRight.setPower(-power);
         mecanumDrive.frontLeft.setPower(power);
-        mecanumDrive.backRight.setPower(power);
-        mecanumDrive.backLeft.setPower(power);
+        mecanumDrive.backRight.setPower(-power);
+        mecanumDrive.backLeft.setPower(-power);
 
         while (mecanumDrive.frontLeft.isBusy() && mecanumDrive.frontRight.isBusy() && mecanumDrive.backLeft.isBusy() && mecanumDrive.backRight.isBusy() )
         {
