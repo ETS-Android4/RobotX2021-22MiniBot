@@ -40,11 +40,11 @@ import org.openftc.easyopencv.OpenCvWebcam;
 
 import robotx.modules.DuckRotation;
 import robotx.modules.IntakeSystem;
-import robotx.modules.LiftSystem;
+import robotx.modules.EncoderTester;
 import robotx.modules.MecanumDrive;
 import robotx.modules.OrientationDrive;
 
-        @Autonomous
+        @Autonomous (name = "OpenCv\uD83D\uDE24")
         public class Opencv extends LinearOpMode {
 
     OpenCvWebcam phoneCam;
@@ -52,7 +52,7 @@ import robotx.modules.OrientationDrive;
     MecanumDrive mecanumDrive;
     DuckRotation duckRotation;
     IntakeSystem intakeSystem;
-    LiftSystem liftSystem;
+    EncoderTester liftSystem;
     OrientationDrive orientationDrive;
 
     @Override
@@ -76,7 +76,7 @@ import robotx.modules.OrientationDrive;
         mecanumDrive = new MecanumDrive(this);
         mecanumDrive.init();
 
-        liftSystem = new LiftSystem(this);
+        liftSystem = new EncoderTester(this);
         liftSystem.init();
 
         mecanumDrive.start();

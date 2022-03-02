@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 import robotx.modules.DuckRotation;
 import robotx.modules.IntakeSystem;
-import robotx.modules.LiftSystem;
+import robotx.modules.EncoderTester;
 import robotx.modules.MecanumDrive;
 import robotx.modules.OrientationDrive;
 
@@ -22,7 +22,7 @@ public class BlueSideDuckRight extends LinearOpMode {
     DuckRotation duckRotation;
     IntakeSystem intakeSystem;
     OrientationDrive orientationDrive;
-    LiftSystem liftSystem;
+    EncoderTester liftSystem;
 
     public Servo duckServo;
 
@@ -46,7 +46,7 @@ public class BlueSideDuckRight extends LinearOpMode {
         orientationDrive = new OrientationDrive(this);
         orientationDrive.init();
 
-        liftSystem = new LiftSystem(this);
+        liftSystem = new EncoderTester(this);
         liftSystem.init();
 
         mecanumDrive.start();
@@ -65,34 +65,23 @@ public class BlueSideDuckRight extends LinearOpMode {
         waitForStart();
         //runtime.reset();
 
+        int SleepTime = 5000;
+
         if (opModeIsActive()) {
             //Movement
-            duckRotation.duckServo.setPosition(0.5);
-            StrafeLeft(0.8,650);
-            sleep(3000);
-            DriveForward(0.8,550);
-            sleep(3000);
-            LiftPlatform(0.8,1800);
-            sleep(3000);
-            TurnLeft(0.8,300);
-            sleep(3000);
-            DriveForward(0.5, 400);
-            sleep(3000);
-            duckRotation.blockServo.setPosition(.9);
-            sleep(3500);
-            DriveBackward(0.8,200);
-            sleep(3000);
-            LowerPlatform(0.8,1800);
-            sleep(3000);
-            TurnRight(0.8,2100);
-            sleep(3050);
-            DriveForward(0.8, 1000);
-            sleep(3000);
-            DuckSpin(0.4,1000);
-            sleep(3000);
-            TurnLeft(0.8, 300);
-            sleep(3000);
-            DriveBackward(0.8, 10000);
+            DriveBackwardDistance(0.7,10);
+            sleep(SleepTime);
+
+            DriveBackwardDistance(0.7,300);
+            sleep(SleepTime);
+
+            StrafeLeftDistance(0.7,300);
+            sleep(SleepTime);
+
+            StrafeRightDistance(0.7,300);
+            sleep(SleepTime);
+
+
         }
     }
 
@@ -184,6 +173,179 @@ public class BlueSideDuckRight extends LinearOpMode {
         liftSystem.liftMotor.setPower(-power);
         sleep(time);
         liftSystem.liftMotor.setPower(0);
+    }
+    public void DriveForwardDistance(double power, int distance){
+
+        int EncoderTicks = (distance * 12);
+
+
+        mecanumDrive.frontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        mecanumDrive.backLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        mecanumDrive.frontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        mecanumDrive.backRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+        mecanumDrive.frontLeft.setTargetPosition(EncoderTicks);
+        mecanumDrive.frontRight.setTargetPosition(EncoderTicks);
+        mecanumDrive.backLeft.setTargetPosition(EncoderTicks);
+        mecanumDrive.backRight.setTargetPosition(EncoderTicks);
+
+        // Set to RUN_TO_POSITION_MODE
+        mecanumDrive.frontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        mecanumDrive.frontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        mecanumDrive.backRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        mecanumDrive.backLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        // Set drive power
+        mecanumDrive.frontRight.setPower(power);
+        mecanumDrive.frontLeft.setPower(power);
+        mecanumDrive.backRight.setPower(power);
+        mecanumDrive.backLeft.setPower(power);
+
+
+        while (mecanumDrive.frontLeft.isBusy() && mecanumDrive.frontRight.isBusy() && mecanumDrive.backLeft.isBusy() && mecanumDrive.backRight.isBusy() )
+        {
+            // Wait until target position is reached
+        }
+
+        // Stop and change modes back to normal
+        mecanumDrive.frontRight.setPower(0);
+        mecanumDrive.frontLeft.setPower(0);
+        mecanumDrive.backRight.setPower(0);
+        mecanumDrive.backLeft.setPower(0);
+
+
+        mecanumDrive.frontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        mecanumDrive.frontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        mecanumDrive.backRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        mecanumDrive.backLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+
+    }
+    public void DriveBackwardDistance(double power, int distance) {
+        // Reset encoders
+        mecanumDrive.frontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        mecanumDrive.frontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        mecanumDrive.backRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        mecanumDrive.backLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+        // Set target position
+        mecanumDrive.frontLeft.setTargetPosition(-distance);
+        mecanumDrive.frontRight.setTargetPosition(-distance);
+        mecanumDrive.backLeft.setTargetPosition(-distance);
+        mecanumDrive.backRight.setTargetPosition(-distance);
+
+        // Set to RUN_TO_POSITION_MODE
+        mecanumDrive.frontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        mecanumDrive.frontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        mecanumDrive.backRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        mecanumDrive.backLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        // Set drive power
+        mecanumDrive.frontRight.setPower(power);
+        mecanumDrive.frontLeft.setPower(power);
+        mecanumDrive.backRight.setPower(power);
+        mecanumDrive.backLeft.setPower(power);
+
+        while (mecanumDrive.frontLeft.isBusy() && mecanumDrive.frontRight.isBusy() && mecanumDrive.backLeft.isBusy() && mecanumDrive.backRight.isBusy() )
+        {
+            // Wait until target position is reached
+        }
+
+        // Stop and change modes back to normal
+        mecanumDrive.frontRight.setPower(0);
+        mecanumDrive.frontLeft.setPower(0);
+        mecanumDrive.backRight.setPower(0);
+        mecanumDrive.backLeft.setPower(0);
+
+        mecanumDrive.frontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        mecanumDrive.frontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        mecanumDrive.backRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        mecanumDrive.backLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+    }
+    public void StrafeLeftDistance(double power, int distance) {
+        // Reset encoders
+        mecanumDrive.frontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        mecanumDrive.frontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        mecanumDrive.backRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        mecanumDrive.backLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+        // Set target position
+        mecanumDrive.frontLeft.setTargetPosition(distance);
+        mecanumDrive.frontRight.setTargetPosition(-distance);
+        mecanumDrive.backLeft.setTargetPosition(-distance);
+        mecanumDrive.backRight.setTargetPosition(distance);
+
+        // Set to RUN_TO_POSITION_MODE
+        mecanumDrive.frontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        mecanumDrive.frontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        mecanumDrive.backRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        mecanumDrive.backLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        // Set drive power
+        mecanumDrive.frontRight.setPower(power);
+        mecanumDrive.frontLeft.setPower(power);
+        mecanumDrive.backRight.setPower(power);
+        mecanumDrive.backLeft.setPower(power);
+
+        while (mecanumDrive.frontLeft.isBusy() && mecanumDrive.frontRight.isBusy() && mecanumDrive.backLeft.isBusy() && mecanumDrive.backRight.isBusy() )
+        {
+            // Wait until target position is reached
+        }
+
+        // Stop and change modes back to normal
+        mecanumDrive.frontRight.setPower(0);
+        mecanumDrive.frontLeft.setPower(0);
+        mecanumDrive.backRight.setPower(0);
+        mecanumDrive.backLeft.setPower(0);
+
+        mecanumDrive.frontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        mecanumDrive.frontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        mecanumDrive.backRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        mecanumDrive.backLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+    }
+    public void StrafeRightDistance(double power, int distance) {
+        // Reset encoders
+        mecanumDrive.frontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        mecanumDrive.frontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        mecanumDrive.backRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        mecanumDrive.backLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+        // Set target position
+        mecanumDrive.frontLeft.setTargetPosition(-distance);
+        mecanumDrive.frontRight.setTargetPosition(distance);
+        mecanumDrive.backLeft.setTargetPosition(distance);
+        mecanumDrive.backRight.setTargetPosition(-distance);
+
+        // Set to RUN_TO_POSITION_MODE
+        mecanumDrive.frontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        mecanumDrive.frontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        mecanumDrive.backRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        mecanumDrive.backLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        // Set drive power
+        mecanumDrive.frontRight.setPower(power);
+        mecanumDrive.frontLeft.setPower(power);
+        mecanumDrive.backRight.setPower(power);
+        mecanumDrive.backLeft.setPower(power);
+
+        while (mecanumDrive.frontLeft.isBusy() && mecanumDrive.frontRight.isBusy() && mecanumDrive.backLeft.isBusy() && mecanumDrive.backRight.isBusy() )
+        {
+            // Wait until target position is reached
+        }
+
+        // Stop and change modes back to normal
+        mecanumDrive.frontRight.setPower(0);
+        mecanumDrive.frontLeft.setPower(0);
+        mecanumDrive.backRight.setPower(0);
+        mecanumDrive.backLeft.setPower(0);
+
+        mecanumDrive.frontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        mecanumDrive.frontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        mecanumDrive.backRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        mecanumDrive.backLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
     }
 
 

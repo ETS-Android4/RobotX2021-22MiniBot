@@ -2,23 +2,29 @@ package robotx.modules;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+
+import robotx.libraries.XModule;
 
 
 @Autonomous(name = "EncoderLift")
 @Disabled
 
-public class EncoderTester extends LinearOpMode {
+public class EncoderTester extends XModule {
 
     public DcMotor liftMotor;
     public DcMotor liftMotor2;
 
+    public EncoderTester(OpMode op) {
+        super(op);
+    }
+
     //@Override
     public void runOpMode() throws InterruptedException
     {
-        liftMotor = hardwareMap.dcMotor.get("liftMotor");
-        liftMotor2 = hardwareMap.dcMotor.get("liftMotor2");
+        liftMotor = opMode.hardwareMap.dcMotor.get("liftMotor");
+        liftMotor2 = opMode.hardwareMap.dcMotor.get("liftMotor2");
 
     }
 
@@ -44,8 +50,10 @@ public class EncoderTester extends LinearOpMode {
         liftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         liftMotor2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
+
         liftMotor.setPower(0.7);
         liftMotor2.setPower(0.7);
+
 
         while (liftMotor.isBusy() && liftMotor2.isBusy() )
         {
@@ -65,8 +73,8 @@ public class EncoderTester extends LinearOpMode {
         liftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         liftMotor2.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
-        liftMotor.setTargetPosition(400);
-        liftMotor2.setTargetPosition(400);
+        liftMotor.setTargetPosition(700);
+        liftMotor2.setTargetPosition(700);
 
         liftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         liftMotor2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -92,8 +100,8 @@ public class EncoderTester extends LinearOpMode {
         liftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         liftMotor2.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
-        liftMotor.setTargetPosition(600);
-        liftMotor2.setTargetPosition(600);
+        liftMotor.setTargetPosition(1200);
+        liftMotor2.setTargetPosition(1200);
 
         liftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         liftMotor2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -119,8 +127,8 @@ public class EncoderTester extends LinearOpMode {
         liftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         liftMotor2.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
-        liftMotor.setTargetPosition(200);
-        liftMotor2.setTargetPosition(200);
+        liftMotor.setTargetPosition(-200);
+        liftMotor2.setTargetPosition(-200);
 
         liftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         liftMotor2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -146,8 +154,8 @@ public class EncoderTester extends LinearOpMode {
         liftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         liftMotor2.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
-        liftMotor.setTargetPosition(400);
-        liftMotor2.setTargetPosition(400);
+        liftMotor.setTargetPosition(-700);
+        liftMotor2.setTargetPosition(-700);
 
         liftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         liftMotor2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -173,8 +181,8 @@ public class EncoderTester extends LinearOpMode {
         liftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         liftMotor2.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
-        liftMotor.setTargetPosition(600);
-        liftMotor2.setTargetPosition(600);
+        liftMotor.setTargetPosition(-1200);
+        liftMotor2.setTargetPosition(-1200);
 
         liftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         liftMotor2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -194,9 +202,16 @@ public class EncoderTester extends LinearOpMode {
         liftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
     }
+/*
+    public void loop() {
+        if (xGamepad2().a.wasPressed()){
+            LiftThirdLevel();
+        }
 
 
 
-}
+    }
+*/
+    }
 
 

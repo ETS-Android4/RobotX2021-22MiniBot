@@ -6,8 +6,8 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
 import robotx.modules.DuckRotation;
+import robotx.modules.EncoderTester;
 import robotx.modules.IntakeSystem;
-import robotx.modules.LiftSystem;
 import robotx.modules.MecanumDrive;
 import robotx.modules.OrientationDrive;
 
@@ -22,7 +22,7 @@ public class BlueSideDuckLeft extends LinearOpMode {
     DuckRotation duckRotation;
     IntakeSystem intakeSystem;
     OrientationDrive orientationDrive;
-    LiftSystem liftSystem;
+    EncoderTester liftSystem;
 
     public Servo duckServo;
 
@@ -46,7 +46,7 @@ public class BlueSideDuckLeft extends LinearOpMode {
         orientationDrive = new OrientationDrive(this);
         orientationDrive.init();
 
-        liftSystem = new LiftSystem(this);
+        liftSystem = new EncoderTester(this);
         liftSystem.init();
 
         mecanumDrive.start();
@@ -203,7 +203,7 @@ public class BlueSideDuckLeft extends LinearOpMode {
 
         liftSystem.liftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         liftSystem.liftMotor2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
+        
         liftSystem.liftMotor.setPower(0.7);
         liftSystem.liftMotor2.setPower(0.7);
 
@@ -212,8 +212,10 @@ public class BlueSideDuckLeft extends LinearOpMode {
 
         }
 
+        sleep(10);
         liftSystem.liftMotor.setPower(0);
         liftSystem.liftMotor2.setPower(0);
+        sleep(10);
 
         liftSystem.liftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         liftSystem.liftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -225,8 +227,8 @@ public class BlueSideDuckLeft extends LinearOpMode {
         liftSystem.liftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         liftSystem.liftMotor2.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
-        liftSystem.liftMotor.setTargetPosition(700);
-        liftSystem.liftMotor2.setTargetPosition(700);
+        liftSystem.liftMotor.setTargetPosition(800);
+        liftSystem.liftMotor2.setTargetPosition(800);
 
         liftSystem.liftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         liftSystem.liftMotor2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -239,8 +241,10 @@ public class BlueSideDuckLeft extends LinearOpMode {
 
         }
 
+        sleep(10);
         liftSystem.liftMotor.setPower(0);
         liftSystem.liftMotor2.setPower(0);
+        sleep(10);
 
         liftSystem.liftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         liftSystem.liftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -252,8 +256,8 @@ public class BlueSideDuckLeft extends LinearOpMode {
         liftSystem.liftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         liftSystem.liftMotor2.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
-        liftSystem.liftMotor.setTargetPosition(1100);
-        liftSystem.liftMotor2.setTargetPosition(1100);
+        liftSystem.liftMotor.setTargetPosition(1900);
+        liftSystem.liftMotor2.setTargetPosition(1900);
 
         liftSystem.liftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         liftSystem.liftMotor2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -266,8 +270,10 @@ public class BlueSideDuckLeft extends LinearOpMode {
 
         }
 
+        sleep(10);
         liftSystem.liftMotor.setPower(0);
         liftSystem.liftMotor2.setPower(0);
+        sleep(10);
 
         liftSystem.liftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         liftSystem.liftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -293,8 +299,10 @@ public class BlueSideDuckLeft extends LinearOpMode {
 
         }
 
+        sleep(10);
         liftSystem.liftMotor.setPower(0);
         liftSystem.liftMotor2.setPower(0);
+        sleep(10);
 
         liftSystem.liftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         liftSystem.liftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -306,8 +314,8 @@ public class BlueSideDuckLeft extends LinearOpMode {
         liftSystem.liftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         liftSystem.liftMotor2.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
-        liftSystem.liftMotor.setTargetPosition(-700);
-        liftSystem.liftMotor2.setTargetPosition(-700);
+        liftSystem.liftMotor.setTargetPosition(-800);
+        liftSystem.liftMotor2.setTargetPosition(-800);
 
         liftSystem.liftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         liftSystem.liftMotor2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -320,8 +328,10 @@ public class BlueSideDuckLeft extends LinearOpMode {
 
         }
 
+        sleep(10);
         liftSystem.liftMotor.setPower(0);
         liftSystem.liftMotor2.setPower(0);
+        sleep(10);
 
         liftSystem.liftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         liftSystem.liftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -333,8 +343,8 @@ public class BlueSideDuckLeft extends LinearOpMode {
         liftSystem.liftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         liftSystem.liftMotor2.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
-        liftSystem.liftMotor.setTargetPosition(-1100);
-        liftSystem.liftMotor2.setTargetPosition(-1100);
+        liftSystem.liftMotor.setTargetPosition(-1900);
+        liftSystem.liftMotor2.setTargetPosition(-1900);
 
         liftSystem.liftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         liftSystem.liftMotor2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -347,13 +357,17 @@ public class BlueSideDuckLeft extends LinearOpMode {
 
         }
 
+        sleep(10);
         liftSystem.liftMotor.setPower(0);
         liftSystem.liftMotor2.setPower(0);
+        sleep(10);
 
         liftSystem.liftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        liftSystem.liftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        liftSystem.liftMotor2.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
     }
+
+
 
 
 }

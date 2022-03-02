@@ -1,3 +1,4 @@
+
 package robotx.modules;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
@@ -20,7 +21,7 @@ LiftSystem extends XModule {
     boolean closed2 = true;
     boolean closed = true;
 
-    public LiftSystem (OpMode op) {
+    public LiftSystem(OpMode op) {
         super(op);
     }
 
@@ -42,6 +43,7 @@ LiftSystem extends XModule {
             closed = false;
         }
     }
+
     public void pushServo() {
         if (!closed2) {
             pushServo.setPosition(0.89);
@@ -86,13 +88,8 @@ LiftSystem extends XModule {
         }
 
 
-
     }
 }
+
 //Open: 0.1
 //Close: 0.267
-
-
-
-
-
