@@ -40,7 +40,8 @@ import org.openftc.easyopencv.OpenCvWebcam;
 
 import robotx.modules.DuckRotation;
 import robotx.modules.IntakeSystem;
-import robotx.modules.EncoderTester;
+
+import robotx.modules.LiftSystem;
 import robotx.modules.MecanumDrive;
 import robotx.modules.OrientationDrive;
 
@@ -57,7 +58,7 @@ public class Opencv extends LinearOpMode {
     MecanumDrive mecanumDrive;
     DuckRotation duckRotation;
     IntakeSystem intakeSystem;
-    EncoderTester liftSystem;
+    LiftSystem liftSystem;
     OrientationDrive orientationDrive;
 
     @Override
@@ -80,7 +81,7 @@ public class Opencv extends LinearOpMode {
         mecanumDrive = new MecanumDrive(this);
         mecanumDrive.init();
 
-        liftSystem = new EncoderTester(this);
+        liftSystem = new LiftSystem(this);
         liftSystem.init();
 
         mecanumDrive.start();
@@ -132,7 +133,7 @@ public class Opencv extends LinearOpMode {
         waitForStart();
 
         while (opModeIsActive()) {
-
+            DriveForward(.2,1000);
             telemetry.addData("Analysis", pipeline.getAnalysis());
             telemetry.update();
 
@@ -187,25 +188,24 @@ public class Opencv extends LinearOpMode {
                 Back up to wall after duckspin to square off
                  */
 
-                DriveForward(0.5,TestTime);
-                StrafeRight(0.5,TestTime);
-                DriveBackward(0.5,TestTime);
+                DriveForward(0.5,150);
+                StrafeRight(0.5,525);
+                DriveBackward(0.5,230);
 
-                DuckSpin(0.5,TestTime);
+                DuckSpin(0.5,800);
+                DriveForward(0.5,100);
 
-                StrafeLeft(0.5,TestTime);
-                DriveBackward(0.5,TestTime);
-                DriveForward(0.5,TestTime);
-                StrafeLeft(0.5,TestTime);
-                DriveForward(0.5,TestTime);
+                StrafeLeft(0.5,700);
+                DriveBackward(0.5,175);
+                DriveForward(0.5,500);
 
                 // encoder lift code:
                 LiftFirstLevel();
                 sleep(SleepTime);
 
-                DriveBackward(0.5,TestTime);
+                DriveBackward(0.5,550);
 
-                LowerFirstLevel();
+                //LowerFirstLevel();
                 sleep(SleepTime);
 
                 // Drive to Warehouse
@@ -222,30 +222,31 @@ public class Opencv extends LinearOpMode {
                 Back up to wall after duckspin to square off
                  */
 
-                DriveForward(0.5,TestTime);
-                StrafeRight(0.5,TestTime);
-                DriveBackward(0.5,TestTime);
+                DriveForward(0.5,150);
+                StrafeRight(0.5,525);
+                DriveBackward(0.5,230);
 
-                DuckSpin(0.5,TestTime);
+                DuckSpin(0.5,800);
+                DriveForward(0.5,100);
 
-                StrafeLeft(0.5,TestTime);
-                DriveBackward(0.5,TestTime);
-                DriveForward(0.5,TestTime);
-                StrafeLeft(0.5,TestTime);
-                DriveForward(0.5,TestTime);
+                StrafeLeft(0.5,700);
+                DriveBackward(0.5,175);
+                DriveForward(0.5,500);
 
                 // encoder lift code:
-                LiftSecondLevel();
+                ///LiftSecondLevel();
                 sleep(SleepTime);
 
-                DriveBackward(0.5,TestTime);
+                DriveBackward(0.5,550);
 
-                LowerSecondLevel();
+                //LowerSecondLevel();
                 sleep(SleepTime);
 
                 // Drive to Warehouse
                 TurnLeft(0.5,TestTime);
                 DriveForward(0.5,TestTime);
+
+                sleep(1000000);
 
                 sleep(1000000);
             }
@@ -256,30 +257,31 @@ public class Opencv extends LinearOpMode {
                 Back up to wall after duckspin to square off
                  */
 
-                DriveForward(0.5,TestTime);
-                StrafeRight(0.5,TestTime);
-                DriveBackward(0.5,TestTime);
+                DriveForward(0.5,150);
+                StrafeRight(0.5,525);
+                DriveBackward(0.5,230);
 
-                DuckSpin(0.5,TestTime);
+                DuckSpin(0.5,800);
+                DriveForward(0.5,100);
 
-                StrafeLeft(0.5,TestTime);
-                DriveBackward(0.5,TestTime);
-                DriveForward(0.5,TestTime);
-                StrafeLeft(0.5,TestTime);
-                DriveForward(0.5,TestTime);
+                StrafeLeft(0.5,700);
+                DriveBackward(0.5,175);
+                DriveForward(0.5,500);
 
                 // encoder lift code:
-                LiftThirdLevel();
+                //LiftThirdLevel();
                 sleep(SleepTime);
 
-                DriveBackward(0.5,TestTime);
+                DriveBackward(0.5,550);
 
-                LowerThirdLevel();
+                ///LowerThirdLevel();
                 sleep(SleepTime);
 
                 // Drive to Warehouse
                 TurnLeft(0.5,TestTime);
                 DriveForward(0.5,TestTime);
+
+                sleep(1000000);
 
                 sleep(1000000);
             }
@@ -383,27 +385,27 @@ public class Opencv extends LinearOpMode {
     }
             //Controls
             public void DriveForward(double power, int time) {
-                mecanumDrive.frontLeft.setPower(power);  //top left when rev is down and ducky wheel is right
-                mecanumDrive.frontRight.setPower(power); //bottom left
-                mecanumDrive.backLeft.setPower(-power);   //top right
-                mecanumDrive.backRight.setPower(power); // bottom right
+                orientationDrive.frontLeft.setPower(-power);  //top left when rev is down and ducky wheel is right
+                orientationDrive.frontRight.setPower(-power); //bottom left
+                orientationDrive.backLeft.setPower(-power);   //top right
+                orientationDrive.backRight.setPower(-power); // bottom right
                 sleep(time);
-                mecanumDrive.frontLeft.setPower(0);
-                mecanumDrive.frontRight.setPower(0);
-                mecanumDrive.backLeft.setPower(0);
-                mecanumDrive.backRight.setPower(0);
+                orientationDrive.frontLeft.setPower(0);
+                orientationDrive.frontRight.setPower(0);
+                orientationDrive.backLeft.setPower(0);
+                orientationDrive.backRight.setPower(0);
             }
 
             public void DriveBackward(double power, int time) {
-                mecanumDrive.frontLeft.setPower(-power);
-                mecanumDrive.frontRight.setPower(-power);
-                mecanumDrive.backLeft.setPower(power);
-                mecanumDrive.backRight.setPower(-power);
+                orientationDrive.frontLeft.setPower(power);
+                orientationDrive.frontRight.setPower(power);
+                orientationDrive.backLeft.setPower(power);
+                orientationDrive.backRight.setPower(power);
                 sleep(time);
-                mecanumDrive.frontLeft.setPower(0);
-                mecanumDrive.frontRight.setPower(0);
-                mecanumDrive.backLeft.setPower(0);
-                mecanumDrive.backRight.setPower(0);
+                orientationDrive.frontLeft.setPower(0);
+                orientationDrive.frontRight.setPower(0);
+                orientationDrive.backLeft.setPower(0);
+                orientationDrive.backRight.setPower(0);
             }
 
             public void StrafeLeft(double power, int time) {
@@ -541,7 +543,7 @@ public class Opencv extends LinearOpMode {
                 liftSystem.liftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
             }
-
+/*
             public void LiftSecondLevel(){
 
                 liftSystem.liftMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -687,7 +689,7 @@ public class Opencv extends LinearOpMode {
 
             }
 
-
+*/
 
         }
 

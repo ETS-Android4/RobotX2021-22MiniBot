@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 import robotx.modules.DuckRotation;
 import robotx.modules.IntakeSystem;
-import robotx.modules.EncoderTester;
+import robotx.modules.LiftSystem;
 import robotx.modules.MecanumDrive;
 import robotx.modules.OrientationDrive;
 
@@ -22,7 +22,7 @@ public class EncoderLiftTest extends LinearOpMode {
     DuckRotation duckRotation;
     IntakeSystem intakeSystem;
     OrientationDrive orientationDrive;
-    EncoderTester liftSystem;
+    LiftSystem liftSystem;
 
     public Servo duckServo;
 
@@ -46,7 +46,7 @@ public class EncoderLiftTest extends LinearOpMode {
         orientationDrive = new OrientationDrive(this);
         orientationDrive.init();
 
-        liftSystem = new EncoderTester(this);
+        liftSystem = new LiftSystem(this);
         liftSystem.init();
 
         mecanumDrive.start();

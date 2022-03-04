@@ -7,7 +7,8 @@
 
  import robotx.modules.DuckRotation;
  import robotx.modules.IntakeSystem;
- import robotx.modules.EncoderTester;
+
+ import robotx.modules.LiftSystem;
  import robotx.modules.MecanumDrive;
  import robotx.modules.MecanumLock;
  import robotx.modules.OrientationDrive;
@@ -23,7 +24,7 @@
      DuckRotation duckRotation;
      IntakeSystem intakeSystem;
      OrientationDrive orientationDrive;
-     EncoderTester liftSystem;
+     LiftSystem liftSystem;
      MecanumLock mecanumLock;
 
      public Servo duckServo;
@@ -48,7 +49,7 @@
          orientationDrive = new OrientationDrive(this);
          orientationDrive.init();
 
-         liftSystem = new EncoderTester(this);
+         liftSystem = new LiftSystem(this);
          liftSystem.init();
 
          mecanumDrive.start();

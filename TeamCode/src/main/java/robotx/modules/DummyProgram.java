@@ -37,6 +37,7 @@ public class DummyProgram extends XModule{
     }
 
     public void loop() {
+        /*
         if (xGamepad1().dpad_up.isDown()) {
             frontLeft.setPower(power);
             frontRight.setPower(-power);
@@ -70,7 +71,11 @@ public class DummyProgram extends XModule{
             frontRight.setPower(0);
             backLeft.setPower(0);
             backRight.setPower(0);
+
+
         }
+
+         */
     }
 
 

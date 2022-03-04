@@ -7,7 +7,8 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 import robotx.modules.DuckRotation;
 import robotx.modules.IntakeSystem;
-import robotx.modules.EncoderTester;
+//import robotx.modules.EncoderTester;
+import robotx.modules.LiftSystem;
 import robotx.modules.MecanumDrive;
 import robotx.modules.OrientationDrive;
 
@@ -22,7 +23,7 @@ public class BlueSideDuckRight extends LinearOpMode {
     DuckRotation duckRotation;
     IntakeSystem intakeSystem;
     OrientationDrive orientationDrive;
-    EncoderTester liftSystem;
+    LiftSystem liftSystem;
 
     public Servo duckServo;
 
@@ -46,7 +47,7 @@ public class BlueSideDuckRight extends LinearOpMode {
         orientationDrive = new OrientationDrive(this);
         orientationDrive.init();
 
-        liftSystem = new EncoderTester(this);
+        liftSystem = new LiftSystem(this);
         liftSystem.init();
 
         mecanumDrive.start();
@@ -76,7 +77,7 @@ public class BlueSideDuckRight extends LinearOpMode {
 
         if (opModeIsActive()) {
             //Movement
-            DriveForwardDistance(0.1,2000);
+            DriveForwardDistance(2000);
             sleep(SleepTime);
 
             DriveBackwardDistance(0.5,300);
@@ -181,7 +182,7 @@ public class BlueSideDuckRight extends LinearOpMode {
         sleep(time);
         liftSystem.liftMotor.setPower(0);
     }
-    public void DriveForwardDistance(double power, int EncoderTicks){
+    public void DriveForwardDistance(int EncoderTicks){
 
         //int EncoderTicks = (distance * 12);
 
@@ -197,10 +198,10 @@ public class BlueSideDuckRight extends LinearOpMode {
         mecanumDrive.backRight.setTargetPosition(EncoderTicks);
 
         // Set drive power
-        mecanumDrive.frontRight.setPower(-power);
-        mecanumDrive.frontLeft.setPower(power);
-        mecanumDrive.backRight.setPower(power);
-        mecanumDrive.backLeft.setPower(power);
+        mecanumDrive.frontRight.setPower(0.2);
+        mecanumDrive.frontLeft.setPower(-0.2);
+        mecanumDrive.backRight.setPower(-0.2);
+        mecanumDrive.backLeft.setPower(-0.2);
 
         // Set to RUN_TO_POSITION_MODE
         mecanumDrive.frontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);

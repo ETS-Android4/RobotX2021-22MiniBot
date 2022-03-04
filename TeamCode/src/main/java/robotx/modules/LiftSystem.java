@@ -56,11 +56,11 @@ LiftSystem extends XModule {
 
 
     public void loop() {
-        if (xGamepad2().dpad_up.isDown()){
+        if (xGamepad2().a.isDown()){
             liftMotor.setPower(power);
         }
 
-        else if (xGamepad2().dpad_down.isDown()) {
+        else if (xGamepad2().b.isDown()) {
             liftMotor.setPower(-power);
         }
 

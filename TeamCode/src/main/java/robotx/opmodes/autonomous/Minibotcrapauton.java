@@ -1,15 +1,19 @@
-package robotx.modules;
 
 
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.DcMotor;
+
+
+package robotx.opmodes.autonomous;
+
+
+        import com.qualcomm.robotcore.eventloop.opmode.Disabled;
+        import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+        import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+        import com.qualcomm.robotcore.hardware.DcMotor;
 
 @TeleOp
 @Disabled
 
-public class MecanumEncoderDrive extends LinearOpMode {
+public class Minibotcrapauton extends LinearOpMode {
 
     public DcMotor frontLeft;
     public DcMotor frontRight;
@@ -17,7 +21,7 @@ public class MecanumEncoderDrive extends LinearOpMode {
     public DcMotor backRight;
 
     @Override
-    public void runOpMode() {
+    public void runOpMode(){
 
         frontLeft = hardwareMap.dcMotor.get("frontLeft");
         frontRight = hardwareMap.dcMotor.get("frontRight");
@@ -26,7 +30,7 @@ public class MecanumEncoderDrive extends LinearOpMode {
 
     }
 
-    public void DriveSystem() {
+    public void DriveSystem(){
 
         frontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         frontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -43,7 +47,7 @@ public class MecanumEncoderDrive extends LinearOpMode {
     // 1 rotation is 25 cm forward / backwards
     // thus the conversion is per 1 cm, there is 12 ticks
 
-    public void DriveForward(double power, int distance) {
+    public void DriveForward(double power, int distance){
 
         int EncoderTicks = (distance * 12);
 
@@ -65,13 +69,14 @@ public class MecanumEncoderDrive extends LinearOpMode {
         backLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
         // Set drive power
-        frontRight.setPower(1);
-        frontLeft.setPower(1);
-        backRight.setPower(1);
-        backLeft.setPower(1);
+        frontRight.setPower(power);
+        frontLeft.setPower(power);
+        backRight.setPower(power);
+        backLeft.setPower(power);
 
 
-        while (frontLeft.isBusy() && frontRight.isBusy() && backLeft.isBusy() && backRight.isBusy()) {
+        while (frontLeft.isBusy() && frontRight.isBusy() && backLeft.isBusy() && backRight.isBusy() )
+        {
             // Wait until target position is reached
         }
 
@@ -89,7 +94,6 @@ public class MecanumEncoderDrive extends LinearOpMode {
 
 
     }
-
     public void DriveBackwardDistance(double power, int distance) {
         // Reset encoders
         frontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -110,12 +114,13 @@ public class MecanumEncoderDrive extends LinearOpMode {
         backLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
         // Set drive power
-        frontRight.setPower(1);
-        frontLeft.setPower(1);
-        backRight.setPower(1);
-        backLeft.setPower(1);
+        frontRight.setPower(power);
+        frontLeft.setPower(power);
+        backRight.setPower(power);
+        backLeft.setPower(power);
 
-        while (frontLeft.isBusy() && frontRight.isBusy() && backLeft.isBusy() && backRight.isBusy()) {
+        while (frontLeft.isBusy() && frontRight.isBusy() && backLeft.isBusy() && backRight.isBusy() )
+        {
             // Wait until target position is reached
         }
 
@@ -131,7 +136,6 @@ public class MecanumEncoderDrive extends LinearOpMode {
         backLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
     }
-
     public void StrafeLeftDistance(double power, int distance) {
         // Reset encoders
         frontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -152,12 +156,13 @@ public class MecanumEncoderDrive extends LinearOpMode {
         backLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
         // Set drive power
-        frontRight.setPower(1);
-        frontLeft.setPower(1);
-        backRight.setPower(1);
-        backLeft.setPower(1);
+        frontRight.setPower(power);
+        frontLeft.setPower(power);
+        backRight.setPower(power);
+        backLeft.setPower(power);
 
-        while (frontLeft.isBusy() && frontRight.isBusy() && backLeft.isBusy() && backRight.isBusy()) {
+        while (frontLeft.isBusy() && frontRight.isBusy() && backLeft.isBusy() && backRight.isBusy() )
+        {
             // Wait until target position is reached
         }
 
@@ -173,7 +178,6 @@ public class MecanumEncoderDrive extends LinearOpMode {
         backLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
     }
-
     public void StrafeRightDistance(double power, int distance) {
         // Reset encoders
         frontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -199,7 +203,8 @@ public class MecanumEncoderDrive extends LinearOpMode {
         backRight.setPower(power);
         backLeft.setPower(power);
 
-        while (frontLeft.isBusy() && frontRight.isBusy() && backLeft.isBusy() && backRight.isBusy()) {
+        while (frontLeft.isBusy() && frontRight.isBusy() && backLeft.isBusy() && backRight.isBusy() )
+        {
             // Wait until target position is reached
         }
 
@@ -215,7 +220,11 @@ public class MecanumEncoderDrive extends LinearOpMode {
         backLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
     }
+
+
+
+
+
+
+
 }
-
-
-

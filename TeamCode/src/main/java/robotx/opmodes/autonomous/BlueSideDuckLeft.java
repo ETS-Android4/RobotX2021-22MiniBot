@@ -6,8 +6,8 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
 import robotx.modules.DuckRotation;
-import robotx.modules.EncoderTester;
 import robotx.modules.IntakeSystem;
+import robotx.modules.LiftSystem;
 import robotx.modules.MecanumDrive;
 import robotx.modules.OrientationDrive;
 
@@ -22,7 +22,8 @@ public class BlueSideDuckLeft extends LinearOpMode {
     DuckRotation duckRotation;
     IntakeSystem intakeSystem;
     OrientationDrive orientationDrive;
-    EncoderTester liftSystem;
+    LiftSystem liftSystem;
+    //EncoderTester liftSystem;
 
     public Servo duckServo;
 
@@ -46,7 +47,7 @@ public class BlueSideDuckLeft extends LinearOpMode {
         orientationDrive = new OrientationDrive(this);
         orientationDrive.init();
 
-        liftSystem = new EncoderTester(this);
+        liftSystem = new LiftSystem(this);
         liftSystem.init();
 
         mecanumDrive.start();
@@ -69,7 +70,7 @@ public class BlueSideDuckLeft extends LinearOpMode {
         if (opModeIsActive()) {
             //Movement
 
-            DriveForward(0.5,500);
+            DriveForward(1,500);
 
 
             sleep(sleeptime);
@@ -108,7 +109,7 @@ public class BlueSideDuckLeft extends LinearOpMode {
     public void DriveForward(double power, int time) {
         mecanumDrive.frontLeft.setPower(power);  //top left when rev is down and ducky wheel is right
         mecanumDrive.frontRight.setPower(power); //bottom left
-        mecanumDrive.backLeft.setPower(-power);   //top right
+        mecanumDrive.backLeft.setPower(power);   //top right
         mecanumDrive.backRight.setPower(power); // bottom right
         sleep(time);
         mecanumDrive.frontLeft.setPower(0);

@@ -57,13 +57,6 @@ public class DuckRotation extends XModule {
         else {
             duckMotor.setPower(0.0);
         }
-
-        if (xGamepad2().right_stick_button.wasPressed()) {
-            blockServo();
-        }
-
-
-
     }
 }
 //Open: 0.1
